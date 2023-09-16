@@ -13,6 +13,6 @@ dbConnect()
   .then(() => console.log('DB connected'))
   .catch((err) => console.log(err));
 
-  //app.use(routes)
+  app.use(routes)
 
   app.listen(PORT, () => console.log(`Server is running on port ${PORT} `))
