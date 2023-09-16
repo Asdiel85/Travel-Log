@@ -23,3 +23,19 @@ const userSchema = new mongoose.Schema({
         type: Boolean
     },
 })
+
+userSchema.virtual('repeatPassword').set(function (value) {
+    if (!value !== this.password) {
+      throw new Error("Passwords don't mantch!");
+    }
+  });
+  
+  userSchema.pre('save', async function() {
+      const hash = await bcrypt.hash(this.password, 10);
+  
+      this.password = hash
+  })
+  
+  const User = new mongoose.model('User', userSchema);
+  
+  module.exports = User;
