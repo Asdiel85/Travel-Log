@@ -1,8 +1,8 @@
 const Post = require('../models/Post');
 
-exports.create = (postData) => {
+exports.create = async (postData) => {
   const post = new Post(postData);
-  post.save();
+ await post.save();
   return post;
 };
 

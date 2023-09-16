@@ -1,7 +1,12 @@
 const router = require('express').Router();
 const postManager = require('../managers/postManager');
+const {routeGuard} = require('../middlewares/authMiddleware')
 
-router.post('/create', async (req, res) => {
+router.get('/create', routeGuard, (req, res) => {
+  res.status(200).send('Create post get')
+})
+
+router.post('/create', routeGuard, async (req, res) => {
   const { country, city, imageUrl, cost, description } = req.body;
 
   try {
