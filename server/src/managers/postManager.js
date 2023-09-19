@@ -1,8 +1,8 @@
 const Post = require('../models/Post');
 
-exports.create = (postData) => {
+exports.create = async (postData) => {
   const post = new Post(postData);
-  post.save();
+ await post.save();
   return post;
 };
 
@@ -14,7 +14,6 @@ exports.getPosts = () => {
 
 exports.getById = (postId) => Post.findById(postId);
 
-exports.updatePost = (postId, postData) =>
-  Post.findByIdAndUpdate(postId, postData, { new: true });
+exports.updatePost = (postId, data) => Post.findByIdAndUpdate(postId, data, { new: true })
 
-  exports.deletePost = (post) => Post.deleteOne(post)
+  exports.deletePost = (postId) => Post.findByIdAndDelete(postId)

@@ -14,9 +14,9 @@ router.post('/register', async (req, res) => {
       email,
       password,
       repeatPassword,
-      isAdmin: false
+      isAdmin: false,
     });
-  
+
     res.send('Success');
   } catch (error) {
     res.status(400).send(error.message);
