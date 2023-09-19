@@ -37,7 +37,7 @@ router.delete('/:postId', routeGuard, async (req, res) => {
   try {
     const post = await postManager.getById(req.params.postId);
 
-    if (req.user.id === post.owner.toString()) {
+    if (req.user.id === post.owner.toString() || req.user.isAdmin) {
       await postManager.deletePost(req.params.postId);
 
       res.status(200).send('Post Deleted');
@@ -53,10 +53,7 @@ router.put('/:postId/edit', routeGuard, async (req, res) => {
   try {
     const post = await postManager.getById(req.params.postId);
     if (post.owner.toString() === req.user.id) {
-      const newPost = await postManager.updatePost(
-        req.params.postId,
-        req.body,
-      );
+      const newPost = await postManager.updatePost(req.params.postId, req.body);
       res.status(200).json(newPost);
     } else {
       throw new Error('You are not authorized to edit this post');

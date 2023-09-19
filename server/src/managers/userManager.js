@@ -37,3 +37,12 @@ exports.login = async (email, password) => {
 
   return token;
 };
+
+exports.getUsers = () => {
+  const result = User.find();
+  return result;
+}
+
+exports.getById = (userId) => User.findById(userId);
+exports.updateUser = (userId, data) => User.findByIdAndUpdate(userId, data, {new: true})
+exports.deleteUser = (userId) => User.findByIdAndDelete(userId)
