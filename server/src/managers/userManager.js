@@ -44,5 +44,5 @@ exports.getUsers = () => {
 }
 
 exports.getById = (userId) => User.findById(userId);
-exports.updateUser = (userId, data) => User.findByIdAndUpdate(userId, data, {new: true})
+exports.updateUser = (userId, data) => User.findByIdAndUpdate(userId, data, {runValidators:true, new: true})
 exports.deleteUser = (userId) => User.findByIdAndDelete(userId)

@@ -2,7 +2,7 @@ const Post = require('../models/Post');
 
 exports.create = async (postData) => {
   const post = new Post(postData);
- await post.save();
+  await post.save();
   return post;
 };
 
@@ -14,6 +14,7 @@ exports.getPosts = () => {
 
 exports.getById = (postId) => Post.findById(postId);
 
-exports.updatePost = (postId, data) => Post.findByIdAndUpdate(postId, data, { new: true })
+exports.updatePost = (postId, data) =>
+  Post.findByIdAndUpdate(postId, data, { runValidators: true, new: true });
 
-  exports.deletePost = (postId) => Post.findByIdAndDelete(postId)
+exports.deletePost = (postId) => Post.findByIdAndDelete(postId);
