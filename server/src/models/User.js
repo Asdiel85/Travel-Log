@@ -27,6 +27,9 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
   },
+},
+{
+  timestamps: true
 });
 
 userSchema.virtual('repeatPassword').set(function (value) {
